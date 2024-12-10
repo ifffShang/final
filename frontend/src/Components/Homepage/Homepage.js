@@ -44,20 +44,6 @@ const Homepage = () => {
                     <h1 className='home_right_title'>Cat lovers are here</h1>
                     <h2 className='home_right_subtitle'>Join Catlover today!</h2>
                     <div className='home_right_buttons'>
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Username"
-                            onChange={handleInputChange}
-                            value={credentials.username}
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            onChange={handleInputChange}
-                            value={credentials.password}
-                        />
                         <button className='btn_secondary'>Sign up with phone or email</button>
                         <p className='policies'>
                             By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.
