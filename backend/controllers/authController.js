@@ -1,8 +1,10 @@
+import User from "../models/user.js"
+import { hashPassword, comparePassword } from "../helpers/auth.js";
+
 export const test = async (req, res) => {
     res.json('test is working.');
 }
 
-import User from "../models/user.js"
 
 export const register = async (req, res) => {
     try {
@@ -10,7 +12,7 @@ export const register = async (req, res) => {
         // check if name was entered
         if (!name) {
             return res.json({
-                error: 'name is required'
+                error: 'Name is required'
             })
         };
 
@@ -28,9 +30,13 @@ export const register = async (req, res) => {
                 error: 'Email has been taken'
             })
         }
+
+        // hash password
+
+        const hashedPassword = await hashPassword(password);
         
         // create the user
-        const user = await User.create({ name, email, password });
+        const user = await User.create({ name, email, password: hashedPassword });
         // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
         // res.cookie("token", token, { httpOnly: true }).json({
         //     message: "User registered successfully",
