@@ -3,17 +3,24 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from "./Components/Homepage/Homepage";
 import Navbar from "./Components/Navbar/Navbar";
-
-const Home = () => <h1>Home Page</h1>;
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <>
     <Navbar/>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Homepage />} />
-      </Routes>
+    <Routes>
+      {/* default page */}
+      <Route path="/" element={<Homepage />} />
+      {/* register page */}
+      <Route path="/register" element={<Register />}></Route>
+      {/* login page */}
+      <Route path="/login" element={<Login />}></Route>
+      {/* profile page */}
+      <Route path="/profile" element={<Profile />}></Route>
+    </Routes>
     </>
   );
 }
