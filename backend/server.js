@@ -8,6 +8,12 @@ import mongoose from "mongoose";
 
 const app = express();
 
+// cors
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:4000'
+}));
+
 // database connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
@@ -20,8 +26,7 @@ mongoose.connect(process.env.MONGO_URI)
 // middleware
 app.use(express.json())
 
-// cors
-app.use(cors());
+
 
 app.use("/", authRoutes)
 

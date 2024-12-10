@@ -7,15 +7,17 @@ import Navbar from "./Components/Navbar/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import { Toaster } from "react-hot-toast";
 
 // backend url
 axios.defaults.baseURL = 'http://localhost:8000'
-axios.defaults.withCredentials = false
+axios.defaults.withCredentials = true
 
 function App() {
   return (
     <>
     <Navbar/>
+    <Toaster position='bottom-right' toastOptions={{duration: 2000}} />
     <Routes>
       {/* default page */}
       <Route path="/" element={<Homepage />} />
