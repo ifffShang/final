@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function Login() {
 
@@ -7,9 +8,26 @@ export default function Login() {
     password: '',
   })
 
-  const loginUser = (e) => {
-    e.preventDefault()
+  const loginUser = async (e) => {
+    e.preventDefault();
+
+    try {
+     // Send POST request to backend
+     const response = await axios.get('http://localhost:8000/', {
+      // email: data.email,
+      // password: data.password,
+    });
+
+    // Handle successful login response
+    console.log(response.data);  // Example: log the response data
+    // You can also store the token or user info here, or redirect to another page
+  } catch (error) {
+    // Handle any error that occurs during the request
+    console.error("Error during login:", error);
+    // Optionally show an error message to the user
   }
+};
+
 
   return (
     <div>

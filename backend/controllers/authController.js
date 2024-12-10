@@ -1,3 +1,7 @@
+export const test = async (req, res) => {
+    res.json('test is working.');
+}
+
 export const register = async (req, res) => {
     const { username, password } = req.body;
     try {

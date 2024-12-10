@@ -1,14 +1,28 @@
-import express from "express";
 import dotenv from 'dotenv';
+// config
+dotenv.config();
+import express from "express";
 import cors from 'cors';
-import authRoutes from "./routes/authRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
+import mongoose from "mongoose";
 
 const app = express();
 
-app.use("/api/auth", authRoutes)
+// database connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("Database connected successfully");
+  })
+  .catch((err) => {
+    console.error("Database not connected", err);
+  });
+
+// cors
+app.use(cors());
+
+app.use("/", authRoutes)
 
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
 })
 
-dotenv.config();
