@@ -17,6 +17,9 @@ mongoose.connect(process.env.MONGO_URI)
     console.error("Database not connected", err);
   });
 
+// middleware
+app.use(express.json())
+
 // cors
 app.use(cors());
 
