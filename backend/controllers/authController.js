@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import { hashPassword, comparePassword } from "../helpers/auth.js";
+import jwt from "jsonwebtoken";
 
 export const test = async (req, res) => {
     res.json('test is working.');
@@ -63,15 +64,21 @@ export const login = async (req, res) => {
         const match = await comparePassword(password, user.password);
         
         if (match) {
-            return res.json({ message: "Login succussfully" });
+            jwt.sign(
+                { email: user.email, id: user._id, name: user.name }, 
+                process.env.JWT_SECRET,
+                {}, 
+                (err, token) => {
+                    if (err) throw err;
+                    res.cookie('token', token).json(user);
+                }
+              );
+        
+        return res.json({ message: "Login succussfully" });
         } else {
             return res.json({ error: "Invalid password" });
         }
-        // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-        // res.cookie("token", token, { httpOnly: true }).json({
-        //     message: "Login successful",
-        //     user: { username: user.username },
-        // });
+        
     } catch (err) {
         res.json({ message: "Login failed", error: err.message });
     }
