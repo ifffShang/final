@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-
+  const navigate = useNavigate();
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -11,21 +13,26 @@ export default function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
 
+    const {email, password} = data;
     try {
      // Send POST request to backend
-     const response = await axios.get('http://localhost:8000/', {
-      // email: data.email,
-      // password: data.password,
+     const response = await axios.post('/login', {
+      email,
+      password,
     });
 
-    // Handle successful login response
-    console.log(response.data);  // Example: log the response data
-    // You can also store the token or user info here, or redirect to another page
-  } catch (error) {
-    // Handle any error that occurs during the request
-    console.error("Error during login:", error);
-    // Optionally show an error message to the user
-  }
+    if (response.data.error) {
+        toast.error(response.data.error);
+    } else {
+        setData({ email: '', password: '' });
+        toast.success("Login successful!");
+        navigate('/'); // Redirect to home page
+    }
+    } catch (error) {
+      // Handle any error that occurs during the request
+      console.error("Error during login:", error);
+      // Optionally show an error message to the user
+    }
 };
 
 

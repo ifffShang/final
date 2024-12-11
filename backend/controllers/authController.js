@@ -5,7 +5,7 @@ export const test = async (req, res) => {
     res.json('test is working.');
 }
 
-
+// register endpoint
 export const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -48,20 +48,32 @@ export const register = async (req, res) => {
     }
 }
 
+// login endpoint
 export const login = async (req, res) => {
-    const { username, password } = req.body;
     try {
-        const user = await User.findOne({ username });
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-            return res.status(400).json({ message: "Invalid username or password" });
+        const { email, password } = req.body;
+
+        // check if user exists
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.json({ error: "Invalid email" });
         }
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-        res.cookie("token", token, { httpOnly: true }).json({
-            message: "Login successful",
-            user: { username: user.username },
-        });
+
+        // check if password match
+        const match = await comparePassword(password, user.password);
+        
+        if (match) {
+            return res.json({ message: "Login succussfully" });
+        } else {
+            return res.json({ error: "Invalid password" });
+        }
+        // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        // res.cookie("token", token, { httpOnly: true }).json({
+        //     message: "Login successful",
+        //     user: { username: user.username },
+        // });
     } catch (err) {
-        res.status(500).json({ message: "Login failed", error: err.message });
+        res.json({ message: "Login failed", error: err.message });
     }
 }
 

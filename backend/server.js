@@ -14,6 +14,8 @@ app.use(cors({
     origin: 'http://localhost:4000'
 }));
 
+app.options('*', cors());
+
 // database connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
