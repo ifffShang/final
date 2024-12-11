@@ -64,19 +64,19 @@ export const login = async (req, res) => {
         const match = await comparePassword(password, user.password);
         
         if (match) {
-            jwt.sign(
+            const token = jwt.sign(
                 { email: user.email, id: user._id, name: user.name }, 
                 process.env.JWT_SECRET,
-                {}, 
-                (err, token) => {
-                    if (err) throw err;
-                    res.cookie('token', token).json(user);
-                }
-              );
-        
-        return res.json({ message: "Login succussfully" });
+                {expiresIn: "15d"});
+
+            res.cookie("jwt", token, {
+                httpOnly: true, // prevent XSS attacks cross-site scripting attacks
+		        sameSite: "strict", // CSRF attacks cross-site request forgery attacks
+		        secure: process.env.NODE_ENV === "production",
+                maxAge: 15 * 24 * 60 * 60 * 1000,
+            });
         } else {
-            return res.json({ error: "Invalid password" });
+            return res.status(200).json({ error: "Invalid password" });
         }
         
     } catch (err) {
