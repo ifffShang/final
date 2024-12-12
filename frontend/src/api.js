@@ -8,6 +8,6 @@ const API = axios.create({
 // User APIs
 export const registerUser = (data) => API.post("/users/register", data);
 export const loginUser = (data) => API.post("/users/login", data);
-export const logoutUser = () => API.get("/users/logout");
+export const logoutUser = () => API.get("/users/logout", { withCredentials: true });
 
 export default API;
