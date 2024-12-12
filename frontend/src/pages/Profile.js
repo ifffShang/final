@@ -52,9 +52,9 @@ export default function Profile() {
       </div>
       
       {/* settings */}
-      <div className="settings-link">
+      {/* <div className="settings-link">
         <a href="/settings">Edit Profile</a>
-      </div>
+      </div> */}
     </div>
   );
 }

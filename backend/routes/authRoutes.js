@@ -23,6 +23,6 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), (req, r
     res.json(req.user);  
 });
 
-router.post('/update-settings', passport.authenticate('jwt', { session: false }), upload.single('avatar'), update_settings);
+router.post('/update-settings', passport.authenticate('jwt', { session: false }), update_settings);
 
 export default router;
