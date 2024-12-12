@@ -30,7 +30,7 @@ export default function Profile() {
         {/* avator and information */}
         <img src={user.avatarUrl || "/default-avatar.png"} alt="Profile Avatar" className="profile-avatar" />
         <h2>{user.name}</h2>
-        <p>@{user.username}</p>
+        <p>{user.email}</p>
         <p>{user.bio || "This user has no bio."}</p>
       </div>
 
@@ -52,9 +52,9 @@ export default function Profile() {
       </div>
       
       {/* settings */}
-      <div className="settings-link">
+      {/* <div className="settings-link">
         <a href="/settings">Edit Profile</a>
-      </div>
+      </div> */}
     </div>
   );
 }
