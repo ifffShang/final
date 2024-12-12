@@ -36,7 +36,9 @@ const deletePost = async (req, res) => {
 
 const getAllPosts = async (req, res) => {
     try{
-        const post = await Post.find().sort({createdAt: -1})
+        const post = await Post.find()
+        .populate('user', 'name email')
+        .sort({createdAt: -1})
         res.status(200).json(post)
 
     }catch(err){

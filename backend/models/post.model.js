@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import UserModel from "./user.js"
+
 
 const postSchema = new mongoose.Schema({
     user:{

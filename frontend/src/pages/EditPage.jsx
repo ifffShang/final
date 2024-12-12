@@ -73,7 +73,7 @@ function EditPage() {
         <button type="submit">Save</button>
       </form>
       {/* Optional: Add a cancel button to navigate back without saving */}
-      <button onClick={() => navigate('/')}>Cancel</button>
+      <button onClick={() => navigate('/main')}>Cancel</button>
     </div>
   );
 }
