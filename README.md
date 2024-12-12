@@ -2,6 +2,9 @@
 ## Contributors
 Hui Kong & Yifei Shang
 
+## Bonus Points
+Password Encryption
+
 ## How to run this project?
 ### frontend
 ```bash
