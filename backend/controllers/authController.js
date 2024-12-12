@@ -1,6 +1,7 @@
 import User from "../models/user.js"
 import { hashPassword, comparePassword } from "../helpers/auth.js";
 import jwt from "jsonwebtoken";
+// import { user } from "react";
 
 export const test = async (req, res) => {
     res.json('test is working.');
@@ -75,12 +76,27 @@ export const login = async (req, res) => {
 		        secure: process.env.NODE_ENV === "production",
                 maxAge: 15 * 24 * 60 * 60 * 1000,
             });
+
+            return res.status(200).json({message: "Login successful", user: {email: user.email, id: user._id, name: user.name}})
         } else {
             return res.status(200).json({ error: "Invalid password" });
         }
         
     } catch (err) {
         res.json({ message: "Login failed", error: err.message });
+    }
+}
+
+// get profile endpoint
+export const getProfile = async (req, res) => {
+    const {token} = req.cookies;
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+            if (err) throw err;
+            res.json(user);
+        })
+    } else {
+        res.json(null);
     }
 }
 
