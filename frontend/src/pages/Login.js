@@ -20,7 +20,7 @@ export default function Login() {
      const response = await axios.post('/login', {
       email,
       password,
-    });
+    }, { withCredentials: true });
 
     if (response.data.error) {
         toast.error(response.data.error);
@@ -32,7 +32,6 @@ export default function Login() {
     } catch (error) {
       // Handle any error that occurs during the request
       console.error("Error during login:", error);
-      // Optionally show an error message to the user
     }
 };
 
