@@ -58,7 +58,10 @@ const Homepage = () => {
                             <Link to="/login">Sign in</Link>
                         </button>
                         {/* link to the home page */}
-                        <button className='btn_primary'>Browse as a visitor</button>
+                        <button className='btn_primary'>
+                        <Link to="/main">Browse as a visitor</Link>
+                            
+                            </button>
                     </div>
                 </div>
             </div>
