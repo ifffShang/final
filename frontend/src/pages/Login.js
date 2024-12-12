@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export default function Login() {
 
   return (
     <div>
-      <form onSubmit={loginUser}>
+      <form onSubmit={loginUser} className='login_form'>
         <label>Email</label>
         <input type='email' placeholder='enter email...' value={data.email} onChange={(e) => setData({...data, email: e.target.value})}></input>
         <label>Password</label>
