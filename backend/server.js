@@ -1,11 +1,13 @@
 import dotenv from 'dotenv';
-// config
 dotenv.config();
 import express from "express";
 import cors from 'cors';
 import authRoutes from "./routes/authRoutes.js";
 import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
+import passport from './config/passport.js';
+import postRoutes from "./routes/post.routes.js"
+import connectMongoBD from "./db/connectMongoDB.js";
 
 const app = express();
 
@@ -29,12 +31,15 @@ mongoose.connect(process.env.MONGO_URI)
 // middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(passport.initialize());
 app.use(express.urlencoded({extended: false}));
 
+app.use('/api/posts', postRoutes);
 
 app.use("/", authRoutes)
 
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
+    connectMongoBD();
 })
 
