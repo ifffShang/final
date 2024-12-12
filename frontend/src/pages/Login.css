@@ -19,23 +19,23 @@ label {
 
 input[type="email"],
 input[type="password"] {
-    width: 90%; /* 输入框宽度占满整个表单 */
-    padding: 12px; /* 增加内边距，让输入框更大 */
-    margin-bottom: 20px; /* 输入框之间的间距 */
-    border: 1px solid #ccc; /* 边框颜色 */
-    border-radius: 4px; /* 圆角 */
-    margin-left: auto; /* 向左对齐 */
-    margin-right: auto; /* 向右对齐 */
-    font-size: 16px; /* 输入框内文字大小 */
+    width: 90%; 
+    padding: 12px; 
+    margin-bottom: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    font-size: 16px; 
 }
 
 button {
     width: 90%;
-    margin-left: auto; /* 向左对齐 */
-    margin-right: auto; /* 向右对齐 */
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 input:focus {
     outline: none;
-    border-color: #007BFF; /* 输入框获得焦点时的边框颜色 */
+    border-color: #007BFF; 
 }

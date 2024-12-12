@@ -83,20 +83,23 @@ export const login = async (req, res) => {
         }
         
     } catch (err) {
-        res.json({ message: "Login failed", error: err.message });
+        return res.json({ message: "Login failed", error: err.message });
     }
 }
 
 // get profile endpoint
 export const getProfile = async (req, res) => {
     const {token} = req.cookies;
+    console.log("cookies", req.cookies);
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
-            if (err) throw err;
-            res.json(user);
+            if (err) {
+                return res.status(403).json({ message: 'Token is invalid or expired' });
+            }
+            return res.status(200).json(user);
         })
     } else {
-        res.json(null);
+        return res.status(401).json({ message: 'No token found, please log in' });
     }
 }
 
