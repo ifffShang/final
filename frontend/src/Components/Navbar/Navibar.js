@@ -10,9 +10,9 @@ export default function Navibar() {
   const { user, setUser} = useContext(UserContext);
 
   const handleLogout = async () => {
-    // todo: logout api
     try {
-      const response = await axios.get('/logout');
+      console.log("logout...");
+      const response = await axios.post('/logout', { withCredentials: true });
 
       setUser(null); 
     } catch (error) {
