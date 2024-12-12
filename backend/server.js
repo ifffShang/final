@@ -6,6 +6,8 @@ import authRoutes from "./routes/authRoutes.js";
 import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
 import passport from './config/passport.js';
+import multer from 'multer';
+import path from 'path';
 
 const app = express();
 
@@ -33,7 +35,20 @@ app.use(passport.initialize());
 app.use(express.urlencoded({extended: false}));
 
 
+
 app.use("/", authRoutes)
+
+// Set up multer for file storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads'); // Store uploaded files in the "uploads" folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Rename the file with a timestamp
+  },
+});
+
+const upload = multer({ storage });
 
 app.listen(8000, () => {
     console.log("Server is running on port 8000");

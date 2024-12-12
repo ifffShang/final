@@ -106,3 +106,14 @@ export const getProfile = async (req, res) => {
 export const logout = async (req, res) => {
     res.clearCookie("token").json({ message: "Logout successful" });
 }
+
+export const update_settings= tryCatch(async(req, res) => {
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {new: true});
+    const {_id: id, name, photoURL} = updatedUser;
+    const token = jwt.sign(
+        { id, name, photoURL }, 
+        process.env.JWT_SECRET,
+        {expiresIn: "15d"});
+    res.status(200).json({ message: {name, photoURL, token}})
+})
+
