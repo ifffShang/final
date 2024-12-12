@@ -8,7 +8,10 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import { Toaster } from "react-hot-toast";
-import { UserContextProvider } from './context/userContext';
+import { UserContextProvider } from './context/userContext.js';
+import Mainpage from './pages/home/Mainpage.jsx';
+import EditPage from './pages/EditPage.jsx';
+import CreatePage from './pages/CreatePage.jsx'
 
 // backend url
 axios.defaults.baseURL = 'http://localhost:8000'
@@ -29,7 +32,9 @@ function App() {
         {/* profile page */}
         <Route path="/profile" element={<Profile />}></Route>
 
-        <Route path="/home" element={<Homepage />} />
+        <Route path="/main" element={<Mainpage />} />
+        <Route path="/edit/:postId" element={<EditPage />} />
+        <Route path="/create" element={<CreatePage />} />
       </Routes>
     </ UserContextProvider>
   );
