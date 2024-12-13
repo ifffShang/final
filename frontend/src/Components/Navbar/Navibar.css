@@ -1,0 +1,60 @@
+/* navbar.css
+
+/* Container for the navbar */
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+  
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Space out the items */
+  align-items: center;
+  background-color: pink; /* Dark background */
+  padding: 10px 20px; /* Add some padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: visible;
+}
+  
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack the links vertically on smaller screens */
+    align-items: flex-start; /* Align the items to the start */
+  }
+
+  .navbar a {
+    margin: 10px 0; /* Add space between links vertically */
+    padding: 10px 20px;
+  }
+}
+
+.logout-button {
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    /* width: 70px; */
+}
+  
+.logout-button:hover {
+    background-color: var(--cat-lover-secondary);
+}
+  
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+} 
+
+.navbar-right {
+  display: flex;
+  gap: 20px;
+}
+
+
+  
+  
