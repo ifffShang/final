@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import axios from 'axios'
 import './Navibar.css'
 import { UserContext } from "../../context/userContext";
-import { Navbar as BootstrapNavbar , Container, Nav, NavDropdown} from 'react-bootstrap';
+import { Navbar as BootstrapNavbar , Button, Container, Nav, NavDropdown} from 'react-bootstrap';
 
 
 export default function Navibar() {
@@ -70,7 +70,7 @@ export default function Navibar() {
     <nav className='navbar'>
       {/* left */}
       <div className='navbar-left'>
-        <Link to='/'>Main</Link>
+        <Button className='navi-btn'><Link to='/'>Main</Link></Button>
       </div>
 
       {/* middle */}
@@ -85,7 +85,7 @@ export default function Navibar() {
         <>
           <button
             onClick={handleLogout}
-            className="logout-button"
+            className="navi-btn"
           >
             Logout
           </button>
@@ -98,16 +98,14 @@ export default function Navibar() {
           />      
           </Link>
 
-          <NavDropdown title={<span>{user.name}</span>} id="user-nav-dropdown" align="end" className="user-dropdown">
-            <NavDropdown.Item as={Link} to="/settings">Settings</NavDropdown.Item>
-          </NavDropdown>
-        
+          {/* name */}
+          <span>{user.name}</span>
         </>
       ) : (
         <>
           {/* when logged out */}
-          <Nav.Item><Link to="/login">Login</Link></Nav.Item>
-          <Nav.Item><Link to="/register">Signup</Link></Nav.Item>
+          <Button className='navi-btn'><Nav.Item><Link to="/login">Login</Link></Nav.Item></Button>
+          <Button className='navi-btn'><Nav.Item><Link to="/register">Signup</Link></Nav.Item></Button>
         </>
       )
     }

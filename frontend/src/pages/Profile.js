@@ -6,19 +6,36 @@ import './Profile.css';
 export default function Profile() {
   const {user} = useContext(UserContext); // get the user info
   const [tweets, setTweets] = useState([]);
+  const [loadingTweets, setLoadingTweets] = useState(true); // Track loading state for tweets
+  const [error, setError] = useState(null); // Error state for tweets
+
+  const formatTimestamp = (createdAt) => {
+    const date = new Date(createdAt);
+    return date.toLocaleString(); // Format as readable local date-time
+  };
 
   // get users' tweets
   useEffect(() => {
     if (user) {
-      axios.get(`/api/tweets/${user.id}`)
+      setLoadingTweets(true); // Start loading when user is present
+      setError(null); // Reset any previous errors
+      console.log(user);
+      console.log(user._id);
+      axios.get(`http://localhost:8000/api/posts/user/${user._id}`)
         .then(response => {
+          console.log(response);
           setTweets(response.data);
+          setLoadingTweets(false);
         })
         .catch(error => {
           console.error("Error fetching tweets:", error);
+          setError('There was an error loading tweets.');
+          setLoadingTweets(false); 
         });
     }
   }, [user]);
+
+  console.log(tweets);
 
   if (!user) {
     return <div>Loading...</div>;
@@ -37,17 +54,23 @@ export default function Profile() {
       {/* tweets */}
       <div className="tweets-section">
         <h3>Recent Tweets</h3>
-        {tweets.length === 0 ? (
-          <p>No tweets yet.</p>
+
+        {Array.isArray(tweets) && tweets && tweets.length > 0 ? (
+          <ul className="posts-list">
+          {tweets.map((tweet) => (
+            <li key={tweet._id} className="post-item">
+              <h2>{user.name}</h2>
+              <p>Posted on: {formatTimestamp(tweet.createdAt)}</p>
+              <p className="post-text">{tweet.text}</p>
+              <div className="actions">
+              
+            </div>
+          </li>
+        ))}
+      </ul>
+         
         ) : (
-          <ul>
-            {tweets.map((tweet, index) => (
-              <li key={index} className="tweet">
-                <p>{tweet.content}</p>
-                <small>{new Date(tweet.createdAt).toLocaleString()}</small>
-              </li>
-            ))}
-          </ul>
+          <p>No tweets yet.</p>
         )}
       </div>
       

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Mainpage.css'; // Import the CSS file
 
+
 function VisitorMainpage() {
   const [posts, setPosts] = useState([]); // State to hold posts
   const [loading, setLoading] = useState(true); // Loading state
@@ -71,7 +72,9 @@ function VisitorMainpage() {
       <ul className="posts-list">
         {posts.map((post) => (
           <li key={post._id} className="post-item">
-            <h2>Post ID: {post._id}</h2>
+
+            <h2>{post.owner.name}</h2>
+
             <p>Posted on: {formatTimestamp(post.createdAt)}</p>
             <p className="post-text">{post.text}</p>
             <div className="actions">

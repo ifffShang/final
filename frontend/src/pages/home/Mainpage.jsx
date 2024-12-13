@@ -69,17 +69,21 @@ function Mainpage() {
 
   return (
     <div className="container">
-      <button onClick={() => handleCreate()}>Create Post</button>
+      <button className="main-btn" onClick={() => handleCreate() }>Create Post</button>
+
       <h1>Posts</h1>
+
       <ul className="posts-list">
         {posts.map((post) => (
           <li key={post._id} className="post-item">
-            <h2>Post ID: {post._id}</h2>
+
+            <h2>{post.owner.name}</h2>
+
             <p>Posted on: {formatTimestamp(post.createdAt)}</p>
             <p className="post-text">{post.text}</p>
             <div className="actions">
-              <button onClick={() => handleEdit(post._id)}>Edit</button>
-              <button onClick={() => handleDelete(post._id)}>Delete</button>
+              <button className="main-btn" onClick={() => handleEdit(post._id)}>Edit</button>
+              <button className="main-btn" onClick={() => handleDelete(post._id)}>Delete</button>
             </div>
           </li>
         ))}
