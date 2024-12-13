@@ -12,7 +12,7 @@ import connectMongoBD from "./db/connectMongoDB.js";
 
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8000;
 // cors
 app.use(cors({
     credentials: true,
@@ -42,8 +42,8 @@ app.use('/api/posts', postRoutes);
 app.use("/", authRoutes)
 
 
-app.listen(8000, () => {
-    console.log("Server is running on port 8000");
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
     // connectMongoBD();
 })
 
