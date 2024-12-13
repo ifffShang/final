@@ -35,6 +35,8 @@ export default function Profile() {
     }
   }, [user]);
 
+  console.log(tweets);
+
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -53,13 +55,11 @@ export default function Profile() {
       <div className="tweets-section">
         <h3>Recent Tweets</h3>
 
-        {!tweets || tweets.length === 0 ? (
-          <p>No tweets yet.</p>
-        ) : (
+        {Array.isArray(tweets) && tweets && tweets.length > 0 ? (
           <ul className="posts-list">
           {tweets.map((tweet) => (
             <li key={tweet._id} className="post-item">
-              <h2>username: {user.name}</h2>
+              <h2>{user.name}</h2>
               <p>Posted on: {formatTimestamp(tweet.createdAt)}</p>
               <p className="post-text">{tweet.text}</p>
               <div className="actions">
@@ -68,6 +68,9 @@ export default function Profile() {
           </li>
         ))}
       </ul>
+         
+        ) : (
+          <p>No tweets yet.</p>
         )}
       </div>
       
