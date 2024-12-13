@@ -77,7 +77,7 @@ function Mainpage() {
         {posts.map((post) => (
           <li key={post._id} className="post-item">
 
-            <h2>Username: {post.owner.name}</h2>
+            <h2>{post.owner.name}</h2>
 
             <p>Posted on: {formatTimestamp(post.createdAt)}</p>
             <p className="post-text">{post.text}</p>
