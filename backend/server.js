@@ -41,20 +41,9 @@ app.use('/api/posts', postRoutes);
 
 app.use("/", authRoutes)
 
-// Set up multer for file storage
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, './uploads'); // Store uploaded files in the "uploads" folder
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + path.extname(file.originalname)); // Rename the file with a timestamp
-//   },
-// });
-
-// const upload = multer({ storage });
 
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
-    connectMongoBD();
+    // connectMongoBD();
 })
 

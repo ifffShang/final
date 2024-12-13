@@ -3,7 +3,11 @@ import UserModel from "./user.js"
 
 
 const postSchema = new mongoose.Schema({
-    owner: String,
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     text:{
         type: String,
         maxlength: 500,
