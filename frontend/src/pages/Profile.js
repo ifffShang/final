@@ -59,7 +59,7 @@ export default function Profile() {
           <ul className="posts-list">
           {tweets.map((tweet) => (
             <li key={tweet._id} className="post-item">
-              <h2>Post ID: {tweet._id}</h2>
+              <h2>username: {user.name}</h2>
               <p>Posted on: {formatTimestamp(tweet.createdAt)}</p>
               <p className="post-text">{tweet.text}</p>
               <div className="actions">

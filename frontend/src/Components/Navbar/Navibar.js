@@ -98,7 +98,7 @@ export default function Navibar() {
           />      
           </Link>
 
-          <NavDropdown title={<span>{user.name}</span>} id="user-nav-dropdown" align="end" className="user-dropdown">
+          <NavDropdown title={<span>{user.name}</span>} id="user-nav-dropdown" align="end" >
             <NavDropdown.Item as={Link} to="/settings">Settings</NavDropdown.Item>
           </NavDropdown>
         
