@@ -9,6 +9,7 @@ const createPost = async (req, res) => {
         const newPost = new Post({
             // user: userId,
             text,
+            owner: req.user._id
             // img
         })
         await newPost.save();
