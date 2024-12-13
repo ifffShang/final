@@ -5,13 +5,16 @@ import passport from 'passport';
 const router = express.Router();
 
 
-const { createPost, deletePost, updatePost,getAllPosts, getPost} = postControllers;
+const { createPost, deletePost, updatePost,getAllPosts, getPost, getPostsByUserId} = postControllers;
 
 // create post
 router.post("/", passport.authenticate('jwt', { session: false }), createPost)
 
-router.delete("/:id", deletePost)
-router.put("/:id", updatePost)
+router.delete("/:id", passport.authenticate('jwt', { session: false }), deletePost)
+router.put("/:id", passport.authenticate('jwt', { session: false }), updatePost)
 router.get("/", getAllPosts)
 router.get("/:id", getPost)
+
+router.get("/user/:userId", getPostsByUserId)
+
 export default router;

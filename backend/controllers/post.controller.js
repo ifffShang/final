@@ -1,5 +1,6 @@
 import { response } from "express";
 import Post from "../models/post.model.js";
+import mongoose from "mongoose";
 
 const createPost = async (req, res) => {
     try {
@@ -51,7 +52,12 @@ const getAllPosts = async (req, res) => {
 
 const getPost = async (req, res) => {
     try{
-        const post = await Post.findById(req.params.id)
+        const postId = req.params.id;
+        if (!postId || !mongoose.Types.ObjectId.isValid(postId)) {
+            return res.status(400).json({ message: "Invalid Post ID" });
+        }
+        const post = await Post.findById(postId);
+
         res.status(200).json(post)
 
     }catch(err){
@@ -78,4 +84,25 @@ const updatePost = async (req, res) => {
     }
 }
 
-export default { createPost, deletePost,  getAllPosts,updatePost, getPost};
+const getPostsByUserId = async (req, res) => {
+    const userId = req.params.userId;
+
+    try {
+        if (!userId) {
+            return res.status(400).json({ error: 'Invalid userId' });
+        }
+        console.log(userId);
+
+        const posts = await Post.find({ owner: userId });
+
+        if (!posts || posts.length === 0) {
+            return res.status(200).json({ message: "No posts found for this user."});
+        }
+        return res.status(200).json(posts);
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        return res.status(500).json({ message: 'Error fetching posts', error });
+    }
+}
+
+export default { createPost, deletePost,  getAllPosts,updatePost, getPost, getPostsByUserId};
