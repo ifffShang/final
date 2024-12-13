@@ -92,5 +92,11 @@
     overflow-wrap: break-word; /* Modern equivalent for breaking long words */
     white-space: normal;    /* Allow text to wrap to the next line */
   }
+  @media (max-width: 768px) {
+    .post-item {
+      width: 400px;
+    }
+    
+  }
   
   

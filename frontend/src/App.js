@@ -13,6 +13,7 @@ import Mainpage from './pages/home/Mainpage.jsx';
 import EditPage from './pages/EditPage.jsx';
 import CreatePage from './pages/CreatePage.jsx'
 import VisitorMainpage from "./pages/home/VisitorMainpage.jsx"
+import UserProfile from './pages/UserProfile.js'
 
 // backend url
 axios.defaults.baseURL = 'http://localhost:8000'
@@ -37,6 +38,8 @@ function App() {
         <Route path="/VisitorMain" element={<VisitorMainpage />} />
         <Route path="/edit/:postId" element={<EditPage />} />
         <Route path="/create" element={<CreatePage />} />
+        <Route path="/profile/:userId" element={<UserProfile />} />
+
       </Routes>
     </ UserContextProvider>
   );

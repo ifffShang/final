@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { register, login, logout, test, getProfile, update_settings } from '../controllers/authController.js'
+import { register, login, logout, test, getProfile, update_settings, getUserById } from '../controllers/authController.js'
 import passport from '../config/passport.js'
 
 const router = express.Router();
@@ -24,5 +24,7 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), (req, r
 });
 
 router.post('/update-settings', passport.authenticate('jwt', { session: false }), update_settings);
+
+router.get('/:userId', getUserById);
 
 export default router;

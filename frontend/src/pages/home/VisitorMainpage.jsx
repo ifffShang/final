@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Mainpage.css'; // Import the CSS file
 
@@ -72,8 +72,10 @@ function VisitorMainpage() {
       <ul className="posts-list">
         {posts.map((post) => (
           <li key={post._id} className="post-item">
-
-            <h2>{post.owner.name}</h2>
+            <Link to={`/profile/${post.owner._id}`}>
+              <h2>{post.owner.name}</h2>
+            </Link>
+            
 
             <p>Posted on: {formatTimestamp(post.createdAt)}</p>
             <p className="post-text">{post.text}</p>
