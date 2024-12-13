@@ -117,3 +117,21 @@ export const update_settings= async(req, res) => {
     res.status(200).json({ message: {name, photoURL, token}})
 }
 
+export const getUserById = async(req, res) => {
+    const userId = req.params.userId;
+
+    try {
+        const user = await User.findById(userId); 
+    
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' }); 
+        }
+    
+        res.json(user); 
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error fetching user data' }); // 如果发生错误，返回 500 错误
+    }
+    
+}
+
