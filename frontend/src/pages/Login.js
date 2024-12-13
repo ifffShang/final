@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 export default function Login() {
@@ -27,7 +27,7 @@ export default function Login() {
     } else {
         setData({ email: '', password: '' });
         toast.success("Login successful!");
-        navigate('/'); // Redirect to home page
+        navigate('/main'); // Redirect to home page
     }
     } catch (error) {
       // Handle any error that occurs during the request
