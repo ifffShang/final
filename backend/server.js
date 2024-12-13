@@ -12,7 +12,7 @@ import connectMongoBD from "./db/connectMongoDB.js";
 
 
 const app = express();
-
+const port = process.env.PORT || 4000;
 // cors
 app.use(cors({
     credentials: true,
