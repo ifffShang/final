@@ -16,7 +16,7 @@ function Mainpage() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await axios.get('http://localhost:8000/api/posts');
+        const response = await axios.get('/api/posts');
         setPosts(response.data);
         setLoading(false);
       } catch (err) {
@@ -38,7 +38,7 @@ function Mainpage() {
       return;
     }
     try {
-      await axios.delete(`http://localhost:8000/api/posts/${postId}`);
+      await axios.delete(`/api/posts/${postId}`);
       setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
     } catch (err) {
       console.error(err);

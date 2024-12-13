@@ -21,7 +21,7 @@ export default function Profile() {
       setError(null); // Reset any previous errors
       console.log(user);
       console.log(user._id);
-      axios.get(`http://localhost:8000/api/posts/user/${user._id}`)
+      axios.get(`/api/posts/user/${user._id}`)
         .then(response => {
           console.log(response);
           setTweets(response.data);

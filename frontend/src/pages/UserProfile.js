@@ -24,7 +24,7 @@ export default function UserProfile() {
       setError(null); // Reset any previous errors
       setLoadingUser(true);
 
-      axios.get(`http://localhost:8000/api/posts/user/${userId}`)
+      axios.get(`/api/posts/user/${userId}`)
         .then(response => {
           console.log(response);
           setTweets(response.data);
