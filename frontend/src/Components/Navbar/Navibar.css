@@ -1,77 +1,60 @@
 /* navbar.css
 
 /* Container for the navbar */
-nav {
-    display: flex;
-    justify-content: space-between; /* Space out the items */
-    align-items: center;
-    background-color: pink; /* Dark background */
-    padding: 10px 20px; /* Add some padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+  
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Space out the items */
+  align-items: center;
+  background-color: pink; /* Dark background */
+  padding: 10px 20px; /* Add some padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: visible;
 }
   
-  /* Style the links inside the navbar */
-  nav a {
-    color: white;
-    text-decoration: none; /* Remove underline */
-    font-size: 18px; /* Set font size */
-    margin: 0 15px; /* Add space between links */
-    padding: 5px 10px;
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth hover transition */
-  }
-  
-  /* Hover effect for links */
-  nav a:hover {
-    background-color: var(--cat-lover-secondary); /* Darker background on hover */
-    color: #fff; /* Keep the text color white */
-  }
-  
-  /* If the link is active (the current page), we can highlight it */
-  nav a.active {
-    background-color: #007BFF; /* Highlight with blue background */
-    color: white;
-  }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    nav {
-      flex-direction: column; /* Stack the links vertically on smaller screens */
-      align-items: flex-start; /* Align the items to the start */
-    }
-  
-    nav a {
-      margin: 10px 0; /* Add space between links vertically */
-      padding: 10px 20px;
-    }
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack the links vertically on smaller screens */
+    align-items: flex-start; /* Align the items to the start */
   }
 
-  .logout-button {
+  .navbar a {
+    margin: 10px 0; /* Add space between links vertically */
+    padding: 10px 20px;
+  }
+}
+
+.logout-button {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     font-size: 16px;
     border-radius: 4px;
     /* width: 70px; */
-  }
+}
   
-  .logout-button:hover {
+.logout-button:hover {
     background-color: var(--cat-lover-secondary);
-  }
-
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+}
   
-  .user-avatar {
+.user-avatar {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     margin-right: 8px;
-  } 
-  
- 
+} 
+
+.navbar-right {
+  display: flex;
+  gap: 20px;
+}
+
+
   
   
