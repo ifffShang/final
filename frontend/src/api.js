@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "https://final-backend-80b6.onrender.com/api",
+    baseURL: "https://final-frontend-isa7.onrender.com/api",
     withCredentials: true, // Allow cookies
 });
 
